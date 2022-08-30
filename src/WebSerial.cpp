@@ -14,15 +14,15 @@ void WebSerialClass::begin(AsyncWebServer *server, const char* url){
 
     _ws->onEvent([&](AsyncWebSocket * server, AsyncWebSocketClient * client, AwsEventType type, void * arg, uint8_t *data, size_t len) -> void {
         if(type == WS_EVT_CONNECT){
-            #if defined(DEBUG)
+            #if defined(DEBUG) && defined(WEBSERIAL_DEBUG)
                 DEBUG_WEB_SERIAL("Client connection received");
             #endif
         } else if(type == WS_EVT_DISCONNECT){
-            #if defined(DEBUG)
+            #if defined(DEBUG) && defined(WEBSERIAL_DEBUG)
                 DEBUG_WEB_SERIAL("Client disconnected");
             #endif
         } else if(type == WS_EVT_DATA){
-            #if defined(DEBUG)
+            #if defined(DEBUG) && defined(WEBSERIAL_DEBUG)
                 DEBUG_WEB_SERIAL("Received Websocket Data");
             #endif
             if(_RecvFunc != NULL){
